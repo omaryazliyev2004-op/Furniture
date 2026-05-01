@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Button } from "@mui/material"
+import {  Button } from "@mui/material"
 
 
 export default function Hero() {
