@@ -10,7 +10,6 @@ export default function Gallery() {
       px-[20px] md:px-[120px]
       gap-[40px] md:gap-0
     '>
-      {/* Text qismi */}
       <div className='w-full md:w-auto text-center md:text-left'>
         <h2 className='font-[700] text-[24px] md:text-[32px] text-[#000000]'>
           Beautify Your Space
