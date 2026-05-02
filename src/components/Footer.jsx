@@ -7,8 +7,8 @@ const instagramImages = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0D3B5E] text-white py-12 px-8">
-      <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-10">
+    <footer className="bg-[#0D3B5E] max-w-full px-[120px] text-white py-12 px-8">
+      <div className=" flex flex-col md:flex-row gap-10">
         <div className="md:w-1/3">
           <h3 className="text-lg font-bold mb-4">Beauty Care</h3>
           <p className="text-sm text-blue-200 leading-relaxed mb-6">
