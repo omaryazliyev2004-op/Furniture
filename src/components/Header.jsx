@@ -1,25 +1,17 @@
-import React, { useState } from 'react'
-import IconButton from '@mui/material/IconButton'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import ListItemButton from '@mui/material/ListItemButton'
-import ListItemText from '@mui/material/ListItemText'
-import Box from '@mui/material/Box'
-import MenuIcon from '@mui/icons-material/Menu'
-import CloseIcon from '@mui/icons-material/Close'
+import React, { useState } from "react";
 
-const navLinks = ['Home', 'Services', 'Doctors', 'Products', 'Gallery']
+const navLinks = ["Home", "Services", "Doctors", "Products", "Gallery"];
 
 export default function Header() {
-    const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
-    return (
-        <>
-            <style>{`
+  return (
+    <>
+      <style>{`
         .nav-link {
           font-size: 14px;
           font-weight: 600;
-          color: #333333;
+          color: #333;
           text-decoration: none;
           position: relative;
           transition: color 0.3s ease;
@@ -37,97 +29,58 @@ export default function Header() {
         }
         .nav-link:hover { color: #054C73; }
         .nav-link:hover::after { width: 100%; }
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
       `}</style>
 
-            <header className='w-full bg-white sticky top-0 z-[100] shadow-[0_2px_12px_rgba(0,0,0,0.07)]'>
-                <nav className='max-w-[1560px] mx-auto flex items-center justify-between px-[20px] md:px-[120px] h-[72px] md:h-[122px]'>
-                    <a href="#">
-                        <img src="/images/logo.svg" alt="logo" className='h-[36px] md:h-auto' />
-                    </a>
+      <header className="w-full bg-white sticky top-0 z-50 shadow-md">
+        <nav className="max-w-[1560px] mx-auto flex items-center justify-between px-5 lg:px-[120px] h-[80px]">
+          
+          <a href="#">
+            <img src="/images/logo.svg" alt="logo" className="h-8" />
+          </a>
 
-                    <ul className='hidden md:flex items-center gap-[70px] list-none m-0 p-0'>
-                        {navLinks.map((link) => (
-                            <li key={link}>
-                                <a href="#" className='nav-link'>{link}</a>
-                            </li>
-                        ))}
-                    </ul>
+          <ul className="hidden min-[1000px]:flex items-center gap-16">
+            {navLinks.map((link) => (
+              <li key={link}>
+                <a href="#" className="nav-link">{link}</a>
+              </li>
+            ))}
+          </ul>
 
-                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            onClick={() => setOpen(!open)}
-                            aria-label="menu"
-                            sx={{
-                                transition: 'transform 0.3s ease',
-                                transform: open ? 'rotate(90deg)' : 'rotate(0deg)',
-                            }}
-                        >
-                            {open ? <CloseIcon /> : <MenuIcon />}
-                        </IconButton>
-                    </Box>
-                </nav>
+          <button
+            onClick={() => setOpen(!open)}
+            className="min-[1000px]:hidden text-2xl"
+          >
+            {open ? "✕" : "☰"}
+          </button>
+        </nav>
 
-                <Box
-                    sx={{
-                        display: { xs: 'block', md: 'none' },
-                        overflow: 'hidden',
-                        maxHeight: open ? '400px' : '0px',
-                        transition: 'max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                        background: '#fff',
-                        borderTop: open ? '1px solid #f0f0f0' : 'none',
-                    }}
+        <div
+          className={`min-[1000px]:hidden overflow-hidden transition-all duration-300 ${
+            open ? "max-h-[400px]" : "max-h-0"
+          }`}
+        >
+          <ul className="flex flex-col px-5 py-3 gap-3 bg-white">
+            {navLinks.map((link) => (
+              <li key={link}>
+                <a
+                  href="#"
+                  onClick={() => setOpen(false)}
+                  className="block py-2 font-semibold text-gray-700 hover:text-[#054C73]"
                 >
-                    <List sx={{ px: 2, py: 1 }}>
-                        {navLinks.map((link, index) => (
-                            <ListItem
-                                key={link}
-                                disablePadding
-                                sx={{
-                                    opacity: open ? 1 : 0,
-                                    transform: open ? 'translateX(0)' : 'translateX(-20px)',
-                                    transition: `all 0.35s ease ${index * 0.07}s`,
-                                }}
-                            >
-                                <ListItemButton
-                                    component="a"
-                                    href="#"
-                                    onClick={() => setOpen(false)}
-                                    sx={{
-                                        borderRadius: 2,
-                                        my: 0.3,
-                                        '&:hover': { backgroundColor: '#EEF4FF', color: '#054C73' },
-                                    }}
-                                >
-                                    <ListItemText
-                                        primary={link}
-                                        primaryTypographyProps={{ fontWeight: 600, fontSize: 15, color: '#333' }}
-                                    />
-                                </ListItemButton>
-                            </ListItem>
-                        ))}
-                    </List>
+                  {link}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </header>
 
-                   
-                </Box>
-            </header>
-
-            {open && (
-                <div
-                    onClick={() => setOpen(false)}
-                    style={{
-                        position: 'fixed',
-                        inset: 0,
-                        background: 'rgba(0,0,0,0.25)',
-                        zIndex: 99,
-                        backdropFilter: 'blur(2px)',
-                        animation: 'fadeIn 0.25s ease',
-                    }}
-                />
-            )}
-        </>
-    )
+      {open && (
+        <div
+          onClick={() => setOpen(false)}
+          className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40"
+        />
+      )}
+    </>
+  );
 }

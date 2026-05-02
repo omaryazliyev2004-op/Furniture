@@ -3,3 +3,7 @@
 body {
   font-family: 'Montserrat', sans-serif;
 }
+
+@theme{
+  --breakpoint-aa: 1000px;
+}
